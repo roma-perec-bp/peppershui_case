@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://2xk6k6csgpub"]
+
+[ext_resource type="Script" uid="uid://c8lqurle7kt8w" path="res://players/perec_dark_trail.gd" id="2_lj743"]
+[ext_resource type="Texture2D" uid="uid://ds6fvty1usl7e" path="res://images/hui_def/hui_dark_spr.png" id="2_p6cmq"]
+
+[node name="perec_dark" type="Sprite2D" unique_id=734092924]
+z_index = 2
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("2_p6cmq")
+hframes = 4
+vframes = 3
+script = ExtResource("2_lj743")

@@ -1,0 +1,186 @@
+[gd_scene format=3 uid="uid://6das3xsn6gqk"]
+
+[ext_resource type="Script" uid="uid://cj01elfy801ka" path="res://levels/obj/monster.gd" id="1_4ag8w"]
+[ext_resource type="Texture2D" uid="uid://btxirls3cfgr0" path="res://images/juice_splat.png" id="1_l208c"]
+[ext_resource type="Texture2D" uid="uid://6f3kingbcbsp" path="res://images/monsters.png" id="2_xcly3"]
+[ext_resource type="Texture2D" uid="uid://d470604oqgjd" path="res://images/monster_splash.png" id="3_4ag8w"]
+[ext_resource type="AudioStream" uid="uid://cwooubwesivvq" path="res://sounds/smallDeath.wav" id="9_bvhf4"]
+[ext_resource type="AudioStream" uid="uid://dbbyt3fp274qc" path="res://sounds/bigDeath.wav" id="10_mei6l"]
+[ext_resource type="AudioStream" uid="uid://cku4ov06jqydt" path="res://sounds/teleportBoss.wav" id="10_p6v4j"]
+[ext_resource type="AudioStream" uid="uid://ldp1wcovlv8n" path="res://sounds/kills/kill_sound.wav" id="10_upo21"]
+[ext_resource type="AudioStream" uid="uid://ctpqon3i8xitk" path="res://sounds/smallSaw.wav" id="11_pjj8a"]
+[ext_resource type="PackedScene" uid="uid://cocbt7vavbo81" path="res://levels/obj/marker.tscn" id="11_tirdo"]
+[ext_resource type="AudioStream" uid="uid://dgy74ntdck3ul" path="res://sounds/bigSaw.wav" id="12_jykfm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_34ukn"]
+size = Vector2(50, 43)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6v4j"]
+atlas = ExtResource("2_xcly3")
+region = Rect2(192, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tirdo"]
+atlas = ExtResource("2_xcly3")
+region = Rect2(128, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l208c"]
+atlas = ExtResource("2_xcly3")
+region = Rect2(256, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bvhf4"]
+atlas = ExtResource("2_xcly3")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mei6l"]
+atlas = ExtResource("2_xcly3")
+region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1l75p"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6v4j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tirdo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l208c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tirdo")
+}],
+"loop": true,
+"name": &"big",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bvhf4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mei6l")
+}],
+"loop": true,
+"name": &"small",
+"speed": 12.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjj8a"]
+atlas = ExtResource("3_4ag8w")
+region = Rect2(0, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jykfm"]
+atlas = ExtResource("3_4ag8w")
+region = Rect2(100, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ycfhr"]
+atlas = ExtResource("3_4ag8w")
+region = Rect2(200, 0, 100, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4w1bg"]
+atlas = ExtResource("3_4ag8w")
+region = Rect2(300, 0, 100, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t8goc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjj8a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jykfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ycfhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4w1bg")
+}],
+"loop": false,
+"name": &"0",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rxlwk"]
+size = Vector2(50, 83)
+
+[node name="monster" type="CharacterBody2D" unique_id=1795112546]
+collision_mask = 16
+motion_mode = 1
+wall_min_slide_angle = 0.17453292
+script = ExtResource("1_4ag8w")
+
+[node name="blood" type="Sprite2D" parent="." unique_id=239835418]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, 20.999998)
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_l208c")
+hframes = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2005488775]
+position = Vector2(0, 26.5)
+shape = SubResource("RectangleShape2D_34ukn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=966884058]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, 21)
+scale = Vector2(1.32, 1.32)
+sprite_frames = SubResource("SpriteFrames_1l75p")
+animation = &"big"
+frame_progress = 0.5740008
+offset = Vector2(0, -20.085)
+
+[node name="gib" type="Node2D" parent="." unique_id=1567353501]
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="." unique_id=775816033]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_t8goc")
+animation = &"0"
+
+[node name="dead_trigger" type="Area2D" parent="." unique_id=479413721]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="dead_trigger" unique_id=894821668]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_rxlwk")
+
+[node name="kill" type="AudioStreamPlayer" parent="." unique_id=1202164839]
+stream = ExtResource("10_upo21")
+bus = &"Sound"
+
+[node name="scream_small" type="AudioStreamPlayer" parent="." unique_id=1619324962]
+stream = ExtResource("9_bvhf4")
+volume_db = -11.774
+bus = &"Sound"
+
+[node name="scream_big" type="AudioStreamPlayer" parent="." unique_id=1392801539]
+stream = ExtResource("10_mei6l")
+volume_db = -11.774
+bus = &"Sound"
+
+[node name="sight_small" type="AudioStreamPlayer2D" parent="." unique_id=580129865]
+stream = ExtResource("11_pjj8a")
+volume_db = -11.774
+bus = &"Sound"
+
+[node name="sight_big" type="AudioStreamPlayer2D" parent="." unique_id=1722211548]
+stream = ExtResource("12_jykfm")
+volume_db = -11.774
+bus = &"Sound"
+
+[node name="teleport" type="AudioStreamPlayer2D" parent="." unique_id=1457917578]
+stream = ExtResource("10_p6v4j")
+volume_db = -11.774
+bus = &"Sound"
+
+[node name="marker" parent="." unique_id=499483050 instance=ExtResource("11_tirdo")]
+on_screen_offset = Vector2(10, -10)
+screen_margin = 8.0
+smoothing_speed = 4.0
+
+[connection signal="animation_finished" from="AnimatedSprite2D2" to="." method="_on_animated_sprite_2d_2_animation_finished"]
+[connection signal="body_entered" from="dead_trigger" to="." method="_on_dead_trigger_body_entered"]

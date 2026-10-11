@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://dt6jemn7yd1e7"]
+
+[ext_resource type="Texture2D" uid="uid://df6j5b50nctic" path="res://images/main_menu/sky.png" id="1_j4488"]
+[ext_resource type="Texture2D" uid="uid://b050ftu05344p" path="res://images/main_menu/city.png" id="2_f3dq2"]
+[ext_resource type="Texture2D" uid="uid://b6nss8hg6xntu" path="res://images/main_menu/bush.png" id="3_tl8iy"]
+
+[node name="Node2D" type="Node2D" unique_id=899307238]
+
+[node name="sky" type="Parallax2D" parent="." unique_id=2100352209]
+scroll_scale = Vector2(0.2, 0.2)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(10, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="sky" unique_id=1726521089]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(320, 239.99998)
+scale = Vector2(4, 4)
+texture = ExtResource("1_j4488")
+
+[node name="city" type="Parallax2D" parent="." unique_id=203023728]
+scroll_scale = Vector2(0.8, 0.8)
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(25, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="city" unique_id=2060241746]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(320, 239.99998)
+scale = Vector2(4, 4)
+texture = ExtResource("2_f3dq2")
+
+[node name="bush" type="Parallax2D" parent="." unique_id=92028782]
+repeat_size = Vector2(640, 0)
+autoscroll = Vector2(50, 0)
+ignore_camera_scroll = true
+
+[node name="Sprite2D" type="Sprite2D" parent="bush" unique_id=259063957]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(320, 239.99998)
+scale = Vector2(4, 4)
+texture = ExtResource("3_tl8iy")

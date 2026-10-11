@@ -1,0 +1,126 @@
+[gd_scene format=3 uid="uid://uwmndlifx6j1"]
+
+[ext_resource type="Script" uid="uid://dbf1o26trvte2" path="res://levels/obj/cacoball.gd" id="1_qvkwk"]
+[ext_resource type="Texture2D" uid="uid://r6pwwlvmum35" path="res://images/final/ball.png" id="1_xn87o"]
+[ext_resource type="Texture2D" uid="uid://lfx41ls4ntuy" path="res://images/final/ball_bye.png" id="2_e40at"]
+[ext_resource type="Shader" uid="uid://crrn0yhgss8s4" path="res://shaders/colorTransformShader.gdshader" id="2_ejnsv"]
+[ext_resource type="AudioStream" uid="uid://dl6nskab7eh0k" path="res://sounds/final/snd_damage.wav" id="5_ejnsv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qvkwk"]
+radius = 41.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71j3b"]
+shader = ExtResource("2_ejnsv")
+shader_parameter/flash_color = Color(1, 1, 1, 1)
+shader_parameter/flash_value = 0.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ejnsv"]
+atlas = ExtResource("2_e40at")
+region = Rect2(0, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_71j3b"]
+atlas = ExtResource("2_e40at")
+region = Rect2(120, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_enmhw"]
+atlas = ExtResource("2_e40at")
+region = Rect2(240, 0, 120, 120)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3yb0"]
+atlas = ExtResource("2_e40at")
+region = Rect2(360, 0, 120, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vuiai"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ejnsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_71j3b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_enmhw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3yb0")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="Animation" id="Animation_enmhw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_o3yb0"]
+resource_name = "new_animation"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:shader_parameter/flash_value")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vuiai"]
+_data = {
+&"RESET": SubResource("Animation_enmhw"),
+&"new_animation": SubResource("Animation_o3yb0")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ejnsv"]
+radius = 29.0
+
+[node name="caco" type="CharacterBody2D" unique_id=977379119]
+z_index = 2
+collision_mask = 16
+script = ExtResource("1_qvkwk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2135135819]
+shape = SubResource("CircleShape2D_qvkwk")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1935222306]
+texture_filter = 1
+texture_repeat = 1
+material = SubResource("ShaderMaterial_71j3b")
+texture = ExtResource("1_xn87o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=733976805]
+visible = false
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_vuiai")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=402033860]
+libraries/ = SubResource("AnimationLibrary_vuiai")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=725459406]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=609178107]
+shape = SubResource("CircleShape2D_ejnsv")
+
+[node name="bop" type="AudioStreamPlayer" parent="." unique_id=521052547]
+stream = ExtResource("5_ejnsv")
+bus = &"Sound"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

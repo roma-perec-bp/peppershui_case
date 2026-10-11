@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bq7jh5k4q7mq7"
+path="res://.godot/imported/darkness impact.wav-3d9fbc89a0a575db99fb5c033374ac60.sample"
+
+[deps]
+
+source_file="res://music/darkness impact.wav"
+dest_files=["res://.godot/imported/darkness impact.wav-3d9fbc89a0a575db99fb5c033374ac60.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,81 @@
+[gd_scene format=3 uid="uid://cjbn72ehpvra8"]
+
+[ext_resource type="Script" uid="uid://dy5nx38r2f1m8" path="res://levels/obj/zomb.gd" id="1_3pqvp"]
+[ext_resource type="Texture2D" uid="uid://dr0batyoyneci" path="res://images/zomb_sprites.png" id="2_3pqvp"]
+[ext_resource type="AudioStream" uid="uid://bwovt8l1fd1pl" path="res://sounds/zomb_wake.wav" id="3_3pqvp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5mf3s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c2i7j"]
+atlas = ExtResource("2_3pqvp")
+region = Rect2(50, 0, 50, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hfsam"]
+atlas = ExtResource("2_3pqvp")
+region = Rect2(0, 0, 50, 90)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06dk1"]
+atlas = ExtResource("2_3pqvp")
+region = Rect2(100, 0, 50, 90)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfs5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c2i7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfsam")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06dk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hfsam")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnypn"]
+size = Vector2(626, 618)
+
+[node name="zomb" type="CharacterBody2D" unique_id=703924546]
+collision_mask = 32
+script = ExtResource("1_3pqvp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1420339356]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_5mf3s")
+
+[node name="spr" type="AnimatedSprite2D" parent="." unique_id=1378678710]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_xfs5j")
+frame_progress = 0.5928607
+offset = Vector2(0, -25.09)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1546320654]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1258249023]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=867153055]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_mnypn")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="alarm" type="AudioStreamPlayer" parent="." unique_id=1959699935]
+stream = ExtResource("3_3pqvp")
+volume_db = -6.903
+bus = &"Sound"
+
+[node name="Timer" type="Timer" parent="." unique_id=2094251619]
+one_shot = true
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

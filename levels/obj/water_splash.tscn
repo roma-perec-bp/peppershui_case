@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://0pcvq1088s8o"]
+
+[ext_resource type="Texture2D" uid="uid://5fwklcpvbgbq" path="res://images/water_trail.png" id="1_a4bcu"]
+[ext_resource type="Script" uid="uid://c1xyu2gg2per0" path="res://levels/obj/water_splash.gd" id="2_lllpe"]
+
+[node name="Sprite2D" type="Sprite2D" unique_id=1945927233]
+texture_filter = 1
+texture_repeat = 1
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("1_a4bcu")
+script = ExtResource("2_lllpe")

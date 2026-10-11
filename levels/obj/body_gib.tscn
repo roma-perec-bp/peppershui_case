@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://db0ahjutoyef1"]
+
+[ext_resource type="Texture2D" uid="uid://davt2llpxycxn" path="res://images/gibs/body_part0.png" id="1_ck0a7"]
+[ext_resource type="Script" uid="uid://xavhg2flpd2l" path="res://levels/obj/body_gib.gd" id="1_mrcgk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pjj8a"]
+radius = 23.021729
+
+[node name="gib" type="RigidBody2D" unique_id=732230710]
+y_sort_enabled = true
+collision_mask = 16
+script = ExtResource("1_mrcgk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1855611415]
+shape = SubResource("CircleShape2D_pjj8a")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=230789282]
+z_index = 1
+y_sort_enabled = true
+texture_filter = 1
+texture_repeat = 1
+texture = ExtResource("1_ck0a7")

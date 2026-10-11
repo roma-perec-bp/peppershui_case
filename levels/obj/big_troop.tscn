@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://bvmg4opiui6tc"]
+
+[ext_resource type="Script" uid="uid://c23ocq7o7x3vf" path="res://levels/obj/big_troop.gd" id="1_iwov8"]
+[ext_resource type="Texture2D" uid="uid://6f3kingbcbsp" path="res://images/monsters.png" id="2_mnypn"]
+[ext_resource type="AudioStream" uid="uid://dgy74ntdck3ul" path="res://sounds/bigSaw.wav" id="3_uweam"]
+[ext_resource type="AudioStream" uid="uid://dbbyt3fp274qc" path="res://sounds/bigDeath.wav" id="4_xsysc"]
+[ext_resource type="AudioStream" uid="uid://bspnyot5016ke" path="res://sounds/bigPain.wav" id="5_g0htj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5mf3s"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iwov8"]
+atlas = ExtResource("2_mnypn")
+region = Rect2(128, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnypn"]
+atlas = ExtResource("2_mnypn")
+region = Rect2(192, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2pfg3"]
+atlas = ExtResource("2_mnypn")
+region = Rect2(256, 0, 64, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xfs5j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwov8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnypn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iwov8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2pfg3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mnypn"]
+size = Vector2(626, 618)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwov8"]
+size = Vector2(40, 81)
+
+[node name="big_troop" type="CharacterBody2D" unique_id=703924546]
+collision_mask = 32
+script = ExtResource("1_iwov8")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1420339356]
+position = Vector2(0, -5)
+shape = SubResource("CircleShape2D_5mf3s")
+
+[node name="spr" type="AnimatedSprite2D" parent="." unique_id=1378678710]
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(0, -5)
+sprite_frames = SubResource("SpriteFrames_xfs5j")
+frame_progress = 0.4431595
+offset = Vector2(0, -25.09)
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1546320654]
+path_desired_distance = 3.0
+target_desired_distance = 3.0
+path_postprocessing = 1
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1258249023]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=867153055]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_mnypn")
+debug_color = Color(0, 0.6, 0.69803923, 0)
+
+[node name="kill_zone" type="Area2D" parent="." unique_id=463565834]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="kill_zone" unique_id=2001431051]
+position = Vector2(0, -26.5)
+shape = SubResource("RectangleShape2D_iwov8")
+
+[node name="alarm" type="AudioStreamPlayer" parent="." unique_id=1959699935]
+stream = ExtResource("3_uweam")
+volume_db = -6.903
+bus = &"Sound"
+
+[node name="dead" type="AudioStreamPlayer" parent="." unique_id=633315759]
+stream = ExtResource("4_xsysc")
+volume_db = -6.903
+bus = &"Sound"
+
+[node name="pain" type="AudioStreamPlayer" parent="." unique_id=1587700002]
+stream = ExtResource("5_g0htj")
+volume_db = -6.903
+bus = &"Sound"
+
+[node name="Timer" type="Timer" parent="." unique_id=2094251619]
+one_shot = true
+
+[node name="splash" type="Node2D" parent="." unique_id=1364689585]
+position = Vector2(0, -21)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="kill_zone" to="." method="_on_kill_zone_body_entered"]
+[connection signal="finished" from="dead" to="." method="_on_dead_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

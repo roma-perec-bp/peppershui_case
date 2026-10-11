@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://bxfe778jl3gb1"]
+
+[ext_resource type="Script" uid="uid://b74q4ntiik85w" path="res://levels/inter_6.gd" id="1_8fguv"]
+[ext_resource type="Texture2D" uid="uid://bblbx1r1plsww" path="res://images/intermission/dial_spr.png" id="2_nqefm"]
+[ext_resource type="Texture2D" uid="uid://dqr8mmjt8132" path="res://images/intermission/bg_dial.png" id="3_22yop"]
+[ext_resource type="FontFile" uid="uid://cyv0cw37ft4vx" path="res://fonts/vcr-rus.ttf" id="4_2vf7x"]
+[ext_resource type="AudioStream" uid="uid://ctn4lguqpd54c" path="res://sounds/talk_dial_case.wav" id="5_wxs0g"]
+[ext_resource type="AudioStream" uid="uid://c2wxoygccffkh" path="res://music/Studio perec hui mix.wav" id="6_8fguv"]
+
+[sub_resource type="Animation" id="Animation_1gjsi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("p1_spr:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(194, 185.00002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("p1_spr:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("p2_spr:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("p2_spr:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(442, 185.00002)]
+}
+
+[sub_resource type="Animation" id="Animation_b7u82"]
+resource_name = "guest_port"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("p2_spr:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.11265645, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("p2_spr:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.105112106, 1),
+"update": 0,
+"values": [Vector2(520, 185), Vector2(442, 185.00002)]
+}
+
+[sub_resource type="Animation" id="Animation_y5gsu"]
+resource_name = "player_port"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("p1_spr:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.21763727, 1),
+"update": 0,
+"values": [Vector2(100, 185), Vector2(194, 185.00002)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("p1_spr:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.105112016, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b7u82"]
+_data = {
+&"RESET": SubResource("Animation_1gjsi"),
+&"guest_port": SubResource("Animation_b7u82"),
+&"player_port": SubResource("Animation_y5gsu")
+}
+
+[node name="Control" type="Control" unique_id=1804940414]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8fguv")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1659113989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="p1_spr" type="Sprite2D" parent="." unique_id=1880594816]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(194, 185.00002)
+scale = Vector2(4.09375, 4.09375)
+texture = ExtResource("2_nqefm")
+hframes = 9
+
+[node name="p2_spr" type="Sprite2D" parent="." unique_id=1528325010]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+texture_filter = 1
+texture_repeat = 1
+position = Vector2(442, 185.00002)
+scale = Vector2(4.09375, 4.09375)
+texture = ExtResource("2_nqefm")
+flip_h = true
+hframes = 9
+
+[node name="dial_box" type="TextureRect" parent="." unique_id=931016569]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 53.0
+offset_top = 340.0
+offset_right = -60.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_22yop")
+
+[node name="dialogueTxt" type="Label" parent="." unique_id=1127332107]
+texture_filter = 1
+texture_repeat = 1
+layout_mode = 0
+offset_left = 82.0
+offset_top = 362.0
+offset_right = 553.0
+offset_bottom = 463.0
+theme_override_fonts/font = ExtResource("4_2vf7x")
+theme_override_font_sizes/font_size = 26
+autowrap_mode = 2
+
+[node name="nextDialogue" type="Timer" parent="." unique_id=1699092475]
+
+[node name="nextCharacter" type="Timer" parent="." unique_id=1771093444]
+
+[node name="portrait" type="AnimationPlayer" parent="." unique_id=2109405098]
+libraries/ = SubResource("AnimationLibrary_b7u82")
+
+[node name="talk" type="AudioStreamPlayer" parent="." unique_id=1960288059]
+stream = ExtResource("5_wxs0g")
+volume_db = -7.849
+bus = &"Sound"
+
+[node name="hide_bg" type="ColorRect" parent="." unique_id=562465756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 332.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="end" type="ColorRect" parent="." unique_id=1495824315]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="music" type="AudioStreamPlayer" parent="." unique_id=1368425732]
+stream = ExtResource("6_8fguv")
+volume_db = -80.0
+pitch_scale = 0.6
+autoplay = true
+bus = &"Music"
+
+[connection signal="timeout" from="nextDialogue" to="." method="_on_next_dialogue_timeout"]
+[connection signal="timeout" from="nextCharacter" to="." method="_on_next_character_timeout"]

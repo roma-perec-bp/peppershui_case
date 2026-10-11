@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://cocbt7vavbo81"]
+
+[ext_resource type="Texture2D" uid="uid://dl2rslh36elk4" path="res://images/arrow_target.png" id="1_641dm"]
+[ext_resource type="Script" uid="uid://cx87y8egj21n8" path="res://levels/obj/marker.gd" id="2_8g2ls"]
+
+[node name="marker" type="Sprite2D" unique_id=499483050]
+z_index = 999
+texture_filter = 1
+texture = ExtResource("1_641dm")
+script = ExtResource("2_8g2ls")

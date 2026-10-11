@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://ck60kty7d8rr4"]
+
+[ext_resource type="Script" uid="uid://biks3cshiuhh5" path="res://levels/obj/enemy_flyt.gd" id="1_ioybv"]
+[ext_resource type="Texture2D" uid="uid://dh6hbh7yueiy0" path="res://images/final/fly.png" id="2_ioybv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j7wpw"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ddy0"]
+atlas = ExtResource("2_ioybv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugpuk"]
+atlas = ExtResource("2_ioybv")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y54sf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ddy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugpuk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p2fna"]
+radius = 6.0
+
+[node name="enemy_bullet" type="CharacterBody2D" unique_id=627933268]
+script = ExtResource("1_ioybv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1085450780]
+shape = SubResource("CircleShape2D_j7wpw")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=305555852]
+texture_filter = 1
+texture_repeat = 1
+sprite_frames = SubResource("SpriteFrames_y54sf")
+autoplay = "default"
+frame_progress = 0.69289196
+
+[node name="Area2D" type="Area2D" parent="." unique_id=448762999]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=814004573]
+shape = SubResource("CircleShape2D_p2fna")
+
+[node name="bullet_fly_left_1" type="Node2D" parent="." unique_id=378537080]
+position = Vector2(-32, -8)
+rotation = -1.5707964
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
